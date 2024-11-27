@@ -1,24 +1,22 @@
-# Use a Node.js base image
-FROM node:22
+FROM node:22-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy package files first for efficient caching
-COPY package.json package-lock.json* ./
+# Copy package files
+COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm ci
 
-# Copy the entire application
+# Copy the rest of the application
 COPY . .
 
-# Build the Next.js app for production
+# Build the app
 RUN npm run build
 
-# Expose the application port
+# Expose port
 EXPOSE 3000
 
-# Start the production server
-CMD ["npm", "start"]
-
+# Start the app in development mode
+CMD ["npm", "run", "dev"]
