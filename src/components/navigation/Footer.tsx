@@ -1,20 +1,18 @@
-import React from 'react';
+
 import { Col, Layout, Row } from 'antd';
-import logo from '../assets/logoKneb.png';
+import logo from '../../assets/logoKneb.png';
 
 export default function Footer() {
   return (
     <Layout.Footer
       style={{
-        width: '100%',
         bottom: 0,
         left: 0,
-        backgroundColor: '#FFFFFF',
         padding: '20px 0',
         boxShadow: '0px -4px 19.9px 0px #00000040',
       }}
     >
-      <Row justify="space-between" gutter={[16, 16]} style={{alignItems: 'center', height: '100%'}}>
+      <Row justify="space-between" gutter={[16, 16]} style={{alignItems: 'center'}}>
         <Col xs={24} sm={8} md={8} lg={8}>
           <div
             style={{
@@ -37,7 +35,7 @@ export default function Footer() {
               paddingLeft: '100px',
             }}
           >
-            Przewodniczący Oskar Kacala
+            Przewodniczący Kacper Kmiecik
             <br />
             <a href="mailto:kneb@wznj.umg.edu.pl">kneb@wznj.umg.edu.pl</a>
           </div>
