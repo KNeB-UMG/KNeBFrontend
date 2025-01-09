@@ -4,6 +4,8 @@ import { Layout } from "antd";
 import AppSidebar from "./AppSidebar";
 import AppNavbar from "./AppNavbar";
 import { Content } from "antd/es/layout/layout";
+import Footer from "./Footer";
+
 
 type LayoutWrapperProps = {
     isSidebar: boolean;
@@ -35,6 +37,7 @@ const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ isSidebar, theme, toggleT
                 <Content style={{ backgroundColor: themes[theme].backgroundColor }}>
                     {children}
                 </Content>
+                <Footer />
             </Layout>
         </Layout>
     );

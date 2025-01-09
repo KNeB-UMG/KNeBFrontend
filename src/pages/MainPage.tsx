@@ -1,10 +1,9 @@
 import React from 'react'
-import Management from '../components/main/Management'
+import Footer from '../components/navigation/Footer'
 
 export default function MainPage() {
   return (
     <div>
-      <Management/>
     </div>
   )
 }
