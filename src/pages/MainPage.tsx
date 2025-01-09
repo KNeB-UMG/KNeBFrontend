@@ -1,9 +1,9 @@
-import React from 'react'
-import Footer from '../components/navigation/Footer'
+import Management from "../components/main/Management";
 
 export default function MainPage() {
   return (
     <div>
+      <Management/>
     </div>
   )
 }
