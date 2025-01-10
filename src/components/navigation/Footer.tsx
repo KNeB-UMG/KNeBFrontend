@@ -1,74 +1,69 @@
-
-import { Col, Layout, Row } from 'antd';
+import { Col, Layout, Row, Flex, Typography, Space } from 'antd';
 import logo from '../../assets/logoKneb.png';
+import { Link } from 'react-router-dom';
+
+const { Text, Title } = Typography;
 
 export default function Footer() {
   return (
     <Layout.Footer
       style={{
-        bottom: 0,
-        left: 0,
-        padding: '20px 0',
+        padding: '2rem 10rem',
         boxShadow: '0px -4px 19.9px 0px #00000040',
       }}
     >
       <Row justify="space-between" gutter={[16, 16]} style={{alignItems: 'center'}}>
         <Col xs={24} sm={8} md={8} lg={8}>
-          <div
-            style={{
-              paddingLeft: '100px',
-              fontSize: '20px',
-              lineHeight: '24px',
-            }}
-          >
+        <Space direction='vertical'>
+          <Text>
             Wydział Zarządzania i Nauk o Jakości
-            <br />
+          </Text>
+          <Text>
             ul. Morska 81-87 81-225
-            <br />
+          </Text>
+          <Text>
             Gdynia tel. (58) 6901-215
-          </div>
+          </Text>
+        </Space>
         </Col>
         <Col xs={24} sm={8} md={8} lg={8}>
-          <div
-            style={{
-              fontSize: '20px',
-              paddingLeft: '100px',
-            }}
-          >
-            Przewodniczący Kacper Kmiecik
-            <br />
-            <a href="mailto:kneb@wznj.umg.edu.pl">kneb@wznj.umg.edu.pl</a>
-          </div>
+        <Space direction="vertical">
+          <Text>
+            Przewodniczący Oskar Kacała
+          </Text>
+          <Text>
+            <Link to="mailto:kneb@wznj.umg.edu.pl">kneb@wznj.umg.edu.pl</Link>
+          </Text>
+        </Space>
         </Col>
         <Col xs={24} sm={8} md={8} lg={8}>
-          <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+          <Flex justify='center' align='center'>
             <img
               src={logo}
-              alt="Koło Naukowe E-Biznesu Logo"
-              style={{width: '211.29px', marginRight: '10px'}}
+              alt="Logo KNeB"
+              style={{width: '7rem'}}
             />
-            <div>
-              <div
+            <Space direction="vertical">
+              <Title level={3}
                 style={{
-                  fontSize: '29.2px',
-                  fontWeight: 'bold',
                   color: '#0071BC',
-                  lineHeight: '0',
+                  lineHeight: '1',
+                  margin: '0'
                 }}
               >
                 KOŁO NAUKOWE
-              </div>
-              <div
+              </Title>
+              <Title level={3}
                 style={{
-                  fontSize: '45.14px',
-                  fontWeight: 'bold',
                   color: '#000000',
+                  lineHeight: '0.1',
+                  margin: '0'
                 }}
               >
                 E-BIZNESU
-              </div>
-            </div>
-          </div>
+              </Title>
+            </Space>
+          </Flex>
         </Col>
       </Row>
     </Layout.Footer>
