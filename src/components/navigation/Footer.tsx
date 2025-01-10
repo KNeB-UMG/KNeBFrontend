@@ -1,7 +1,8 @@
 import { Col, Layout, Row, Flex, Typography, Space } from 'antd';
 import logo from '../../assets/logoKneb.png';
+import { Link } from 'react-router-dom';
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 export default function Footer() {
   return (
@@ -13,21 +14,27 @@ export default function Footer() {
     >
       <Row justify="space-between" gutter={[16, 16]} style={{alignItems: 'center'}}>
         <Col xs={24} sm={8} md={8} lg={8}>
+        <Space direction='vertical'>
           <Text>
-            <br />
             Wydział Zarządzania i Nauk o Jakości
-            <br />
+          </Text>
+          <Text>
             ul. Morska 81-87 81-225
-            <br />
+          </Text>
+          <Text>
             Gdynia tel. (58) 6901-215
           </Text>
+        </Space>
         </Col>
         <Col xs={24} sm={8} md={8} lg={8}>
+        <Space direction="vertical">
           <Text>
             Przewodniczący Oskar Kacała
-            <br />
-            <a href="mailto:kneb@wznj.umg.edu.pl">kneb@wznj.umg.edu.pl</a>
           </Text>
+          <Text>
+            <Link to="mailto:kneb@wznj.umg.edu.pl">kneb@wznj.umg.edu.pl</Link>
+          </Text>
+        </Space>
         </Col>
         <Col xs={24} sm={8} md={8} lg={8}>
           <Flex justify='center' align='center'>
@@ -37,24 +44,24 @@ export default function Footer() {
               style={{width: '7rem'}}
             />
             <Space direction="vertical">
-              <Text strong 
+              <Title level={3}
                 style={{
-                  fontSize: '1.5rem',
                   color: '#0071BC',
                   lineHeight: '1',
+                  margin: '0'
                 }}
               >
                 KOŁO NAUKOWE
-              </Text>
-              <Text strong
+              </Title>
+              <Title level={3}
                 style={{
-                  fontSize: '2.3rem',
                   color: '#000000',
                   lineHeight: '0.1',
+                  margin: '0'
                 }}
               >
                 E-BIZNESU
-              </Text>
+              </Title>
             </Space>
           </Flex>
         </Col>
