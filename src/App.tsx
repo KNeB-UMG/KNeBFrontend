@@ -5,6 +5,8 @@ import EventsPage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import { ThemeType } from './theme';
 import LayoutWrapper from './components/navigation/LayoutWrapper';
+import locale from 'antd/es/locale/pl_PL';
+import { ConfigProvider } from 'antd';
 
 const App: React.FC = () => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -24,15 +26,17 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <Router>
-            <LayoutWrapper isSidebar={isSidebar} theme={theme} toggleTheme={toggleTheme}>
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/events" element={<EventsPage />} />
-                </Routes>
-            </LayoutWrapper>
-        </Router>
+        <ConfigProvider locale={locale}>
+            <Router>
+                <LayoutWrapper isSidebar={isSidebar} theme={theme} toggleTheme={toggleTheme}>
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/events" element={<EventsPage />} />
+                    </Routes>
+                </LayoutWrapper>
+            </Router>
+        </ConfigProvider>
     );
 };
 
