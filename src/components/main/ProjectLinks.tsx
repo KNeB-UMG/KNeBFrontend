@@ -6,16 +6,10 @@ import { useEffect, useState } from 'react';
 const { Title, Text } = Typography;
 
 export default function ProjectLinks() {
-    const [isLargeScreen, setIsLargeScreen] = useState(false);
+    const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth >= 992);
 
     useEffect(() => {
-        const handleResize = () => {
-            setIsLargeScreen(window.innerWidth >= 992);
-        };
-        
-        handleResize();
-        window.addEventListener('resize', handleResize);
-        return () => window.removeEventListener('resize', handleResize);
+        setIsLargeScreen(window.innerWidth >= 992);
     }, []);
 
     return (
