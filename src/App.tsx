@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
-import EventsCalendar from './components/events/EventsCalendar.tsx';
 import LoginPage from './pages/LoginPage';
 import { ThemeType } from './theme';
 import LayoutWrapper from './components/navigation/LayoutWrapper';
+import locale from 'antd/es/locale/pl_PL';
 import { ConfigProvider } from 'antd';
-import pl from 'antd/lib/locale/pl_PL';
+import { EventsPage } from './pages/EventsPage.tsx';
 
 const App: React.FC = () => {
     const [theme, setTheme] = useState<ThemeType>('light');
@@ -26,16 +26,16 @@ const App: React.FC = () => {
     }, []);
 
     return (
-        <ConfigProvider locale={pl}>
-        <Router>
-            <LayoutWrapper isSidebar={isSidebar} theme={theme} toggleTheme={toggleTheme}>
-                <Routes>
-                    <Route path="/" element={<MainPage />} />
-                    <Route path="/login" element={<LoginPage />} />
-                    <Route path="/events" element={<EventsPage />} />
-                </Routes>
-            </LayoutWrapper>
-        </Router>
+        <ConfigProvider locale={locale}>
+            <Router>
+                <LayoutWrapper isSidebar={isSidebar} theme={theme} toggleTheme={toggleTheme}>
+                    <Routes>
+                        <Route path="/" element={<MainPage />} />
+                        <Route path="/login" element={<LoginPage />} />
+                        <Route path="/events" element={<EventsPage />} />
+                    </Routes>
+                </LayoutWrapper>
+            </Router>
         </ConfigProvider>
     );
 };
