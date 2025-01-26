@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MainPage from './pages/MainPage';
-import EventsPage from './pages/EventsPage';
 import LoginPage from './pages/LoginPage';
 import { ThemeType } from './theme';
 import LayoutWrapper from './components/navigation/LayoutWrapper';
 import locale from 'antd/es/locale/pl_PL';
 import { ConfigProvider } from 'antd';
+import { EventsPage } from './pages/EventsPage.tsx';
 
 const App: React.FC = () => {
     const [theme, setTheme] = useState<ThemeType>('light');
