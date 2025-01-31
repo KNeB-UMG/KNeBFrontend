@@ -30,7 +30,7 @@ export default function LoginPage() {
           </Form.Item>
 
           <Form.Item label={null} style={{ textAlign: 'center' }}>
-            <Button type="primary" htmlType="submit" style={{ backgroundColor: 'blue', width: '20%' }}>
+            <Button type="primary" htmlType="submit">
               Zaloguj
             </Button>
           </Form.Item>
