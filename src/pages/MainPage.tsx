@@ -6,6 +6,8 @@ export default function MainPage() {
     <div>
       <ProjectLinks/>
       <Management/>
+      
+    
     </div>
   )
 }
