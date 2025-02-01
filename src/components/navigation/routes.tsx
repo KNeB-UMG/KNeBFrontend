@@ -1,4 +1,4 @@
-import { faCalendarAlt, faHome, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faDiagramProject, faHome, faImage, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -11,15 +11,27 @@ export type RouteProps = {
 
 export const routes:RouteProps[] = [
     {
-        key: '/',
+        key: 'home',
         icon: faHome,
-        label: <Link to="/">Home</Link>,
+        label: <Link to="/">Strona główna</Link>,
         tooltip: 'Strona główna'
     },
     {
-        key: '/events',
+        key: 'events',
         icon: faCalendarAlt,
-        label: <Link to="/events">Events</Link>,
+        label: <Link to="/events">Wydarzenia</Link>,
         tooltip: 'Wydarzenia'
-    }
+    },
+    {
+        key: 'projects',
+        icon: faDiagramProject,
+        label: <Link to="/projects">Projekty</Link>,
+        tooltip: 'Projekty'
+    },
+    {
+        key: 'posts',
+        icon: faImage,
+        label: <Link to="/posts">Posty</Link>,
+        tooltip: 'Posty'
+    },
 ];
