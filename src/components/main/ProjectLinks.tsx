@@ -28,7 +28,7 @@ export default function ProjectLinks() {
                         style={{
                             boxShadow: '0px 4px 19.9px 0px #00000040',
                             borderRadius: '25px',
-                            padding: '10px',
+                            padding: '20px',
                             backgroundColor: 'white',
                             margin: '10px'
                         }}
