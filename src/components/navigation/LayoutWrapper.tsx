@@ -1,37 +1,28 @@
-import { ReactNode, useState } from "react";
-import { themes, ThemeType } from "../../theme";
+import { ReactNode } from "react";
+import { themes } from "../../theme";
 import { Layout } from "antd";
 import AppSidebar from "./AppSidebar";
 import AppNavbar from "./AppNavbar";
 import { Content } from "antd/es/layout/layout";
 import Footer from "./Footer";
-
+import { useTheme } from "../../hooks/useTheme";
+import { useWindowSize } from "../../hooks/useWindowSize";
 
 type LayoutWrapperProps = {
-    isSidebar: boolean;
-    theme: ThemeType;
-    toggleTheme: () => void;
     children: ReactNode
 };
 
-const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ isSidebar, theme, toggleTheme, children }) => {
-    const [collapsed, setCollapsed] = useState(false);
+const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
 
-    const toggleCollapse = () => {
-        setCollapsed(!collapsed);
-    };
+    const { theme } = useTheme()
+    const { isMobile } = useWindowSize()
 
     return (
         <Layout style={{ minHeight: '100vh', backgroundColor: themes[theme].backgroundColor }}>
-            {isSidebar ? (
-                <AppSidebar
-                    theme={theme}
-                    collapsed={collapsed}
-                    toggleCollapse={toggleCollapse}
-                    toggleTheme={toggleTheme}
-                />
+            {isMobile ? (
+                <AppSidebar theme={theme}/>
             ) : (
-                <AppNavbar theme={theme} toggleTheme={toggleTheme} />
+                <AppNavbar theme={theme} />
             )}
             <Layout>
                 <Content style={{ backgroundColor: themes[theme].backgroundColor }}>
