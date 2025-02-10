@@ -1,6 +1,4 @@
-import React from 'react'
 import { Card, Space } from 'antd'
-import { width } from '@fortawesome/free-brands-svg-icons/fa42Group';
 
 type StandardCardProps = {
   title?: string;
@@ -12,6 +10,7 @@ type StandardCardProps = {
 const {Meta}=Card;
 
 export const StandardCard= (props: StandardCardProps) => {
+  
 return(
   <>
   <Space>
