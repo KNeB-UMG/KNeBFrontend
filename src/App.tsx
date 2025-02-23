@@ -3,15 +3,15 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainPage from "./pages/MainPage";
 import LoginPage from "./pages/LoginPage";
 import LayoutWrapper from "./components/navigation/LayoutWrapper";
-import locale from "antd/es/locale/pl_PL";
-import { ConfigProvider } from "antd";
 import { EventsPage } from "./pages/EventsPage";
 import { ThemeProvider } from "./hooks/useTheme";
+import CustomConfigProvider from "./CustomConfigProvider";
 
 const App: React.FC = () => {
+    
     return (
         <ThemeProvider>
-            <ConfigProvider locale={locale}>
+            <CustomConfigProvider>
                 <Router>
                     <LayoutWrapper>
                         <Routes>
@@ -21,7 +21,7 @@ const App: React.FC = () => {
                         </Routes>
                     </LayoutWrapper>
                 </Router>
-            </ConfigProvider>
+            </CustomConfigProvider>
         </ThemeProvider>
     );
 };
