@@ -3,9 +3,9 @@ import { notification } from "antd";
 export function useNotification() {
     const showNotification = (message: string | JSX.Element, type: "success" | "info" | "warning" | "error") => {
         notification[type]({
-            message: "Notification",
+            message: "Powiadomienie",
             description: message,
-            placement: "topLeft",
+            placement: "bottomLeft",
             duration: 4,
         });
     };
