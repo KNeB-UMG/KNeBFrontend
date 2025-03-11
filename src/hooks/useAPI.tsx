@@ -1,128 +1,109 @@
 import { useEffect, useState } from "react";
-import { useNotification } from "./useNotification.tsx";
-import { Button } from "antd";
+import { useNotification } from "./useNotification";
 
-const apiUrl = import.meta.env.VITE_API_URL
+const apiUrl = import.meta.env.VITE_API_URL;
 
-export type callAPIProps = {
-    url?: string | ((params:urlFunctionParams) => string),
-    method?: string,
-    body?: object,
-    displayErrorNotification?: boolean
-}
+export type CallAPIProps = {
+  url?: string | ((params: UrlFunctionParams) => string);
+  method?: string;
+  body?: object;
+  headers?: object;
+  displayNotification?: boolean;
+};
 
-export type callAPIFunction = (...args: any[]) => callAPIProps;
+export type CallAPIFunction = (...args: any[]) => CallAPIProps;
+export type CallAPISettings = CallAPIProps | CallAPIFunction;
 
-export type callAPISettings = callAPIProps | callAPIFunction;
+export type UrlFunctionParams = {
+  getApiUrl(url: string, version?: number): string;
+};
 
-export type urlFunctionParams = {
-    getApiUrl(url:string, version?:number): string;
-    employeeId: number;
-}
-export const getApiUrl = (url:string, version?:number) => version ? `${apiUrl}/api/v${version}${url}` : `${apiUrl}/api/v1/${url}`;
+export const getApiUrl = (url: string) => `${apiUrl}${url}`;
 
-export default function useAPI(props: callAPIProps, callInstantly = false) {
-    const [loading, setLoading] = useState(false);
-    const [data, setData] = useState<any>(undefined);
-    const [error, setError] = useState<any>(undefined);
-    const [success, setSuccess] = useState(false);
+export default function useAPI(props: CallAPIProps, callInstantly = false) {
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState<any>(undefined);
+  const [error, setError] = useState<any>(undefined);
+  const [success, setSuccess] = useState(false);
 
-    const { showNotification } = useNotification();
+  const { showNotification } = useNotification();
 
-    const employeeId = sessionStorage.getItem("employeeId");
-    const token = sessionStorage.getItem("token");
-
-    function handleReAuth() {
-        window.location.href = "/login";
+  useEffect(() => {
+    if (callInstantly) {
+      callAPI();
     }
+  }, []);
 
-    const getUrl = (url: string | ((params: urlFunctionParams) => string)) => {
-        if (typeof url === "string") return url;
-        if (typeof url === "function")
-            return url({
-                employeeId: employeeId ? parseInt(employeeId) : 0,
-                getApiUrl,
-            });
-    };
+  const token = sessionStorage.getItem("token");
 
-    const call = async (cp?: callAPISettings) => {
-        if (!cp) return await callAPI();
+  const getUrl = (url: string | ((params: UrlFunctionParams) => string)) => {
+    if (typeof url === "string") return url;
+    if (typeof url === "function") {
+      return url({
+        getApiUrl,
+      });
+    }
+  };
 
-        let callProps: callAPIProps = {};
+  const call = async (cp?: CallAPISettings) => {
+    if (!cp) return await callAPI();
 
-        if (typeof cp === "function") {
-            callProps = cp();
-        } else {
-            callProps = cp;
+    const callProps = typeof cp === "function" ? cp() : cp;
+    return await callAPI(callProps);
+  };
+
+  const callAPI = async (callProps?: CallAPIProps) => {
+    try {
+      setLoading(true);
+      const finalProps = { ...props, ...callProps };
+
+      if (!finalProps.url) return null;
+
+      const headers: { [key: string]: string } = {
+        "Content-Type": "application/json",
+        ...(token && { Authorization: `Bearer ${token}` }),
+        ...finalProps.headers,
+      };
+
+      const requestOptions: RequestInit = {
+        method: finalProps.method || "GET",
+        headers,
+        ...(finalProps.method !== "GET" && finalProps.method !== "DELETE"
+          ? { body: JSON.stringify(finalProps.body) }
+          : {}),
+      };
+
+      const response = await fetch(getUrl(finalProps.url)!, requestOptions);
+
+      if (response.status === 204) {
+        setData([]);
+        return { data: null, response };
+      }
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        if (finalProps.displayNotification === true) {
+          showNotification(responseData.message, "error");
         }
+        throw new Error(responseData.message);
+      }
 
-        return await callAPI(callProps);
-    };
+      if (finalProps.displayNotification === true) {
+        showNotification(responseData.message, "success");
+      }
 
-    const callAPI = async (callProps?: callAPIProps) => {
-        try {
-            setLoading(true);
+      setSuccess(true);
+      setData(responseData);
+      setError(null);
 
-            const headers: { [key: string]: string } = {
-                "Content-Type": "application/json",
-                ...(token && { Authorization: `Bearer ${token}` }),
-            };
+      return { data: responseData, response };
+    } catch (error) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-            if (!props.url) return null;
-
-            const requestOptions: RequestInit = {
-                method: props.method || "GET",
-                headers,
-                ...((props.method === "POST" || props.method === "PUT") && {
-                    body: JSON.stringify(props.body || callProps?.body),
-                }),
-                ...(props.method === "DELETE" && props.body ? { body: JSON.stringify(props.body) } : {}),
-            };
-
-            const response = await fetch(getUrl(props.url), requestOptions);
-            const responseData = await response.json();
-
-            if (!response.ok) {
-                if (props.displayErrorNotification !== false) {
-                    if (response.status === 401) {
-                        showNotification(
-                            <>
-                                Zaloguj się ponownie
-                                <Button
-                                    type="primary"
-                                    danger
-                                    size="small"
-                                    onClick={handleReAuth}
-                                    style={{ marginLeft: "10px" }}
-                                >
-                                    Zaloguj się
-                                </Button>
-                            </>,
-                            "error"
-                        );
-                        sessionStorage.clear();
-                    } else {
-                        showNotification(responseData.message || "Wystąpił błąd", "error");
-                    }
-                }
-                throw new Error(responseData.message);
-            }
-
-            setData(responseData?.data);
-            setSuccess(true);
-            setError(null);
-
-            return { data: responseData, response };
-        } catch (err) {
-            setError(err);
-        } finally {
-            setLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        if (callInstantly) callAPI();
-    }, []);
-
-    return { loading, data, error, success, callAPI, call };
+  return { loading, data, error, success, callAPI, call };
 }

@@ -1,10 +1,10 @@
 import { notification } from "antd";
 
 export function useNotification() {
-    const showNotification = (message: string | JSX.Element, type: "success" | "info" | "warning" | "error") => {
+    const showNotification = (description: string | JSX.Element, type: "success" | "info" | "warning" | "error", message?:string | JSX.Element,) => {
         notification[type]({
-            message: "Notification",
-            description: message,
+            message: message || "Powiadomienie",
+            description: description || "Operacja powiodła się",
             placement: "topLeft",
             duration: 4,
         });
