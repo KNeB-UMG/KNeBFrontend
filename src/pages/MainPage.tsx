@@ -4,28 +4,46 @@ import ProjectLinks from "../components/main/ProjectLinks";
 import { useNotification } from "../hooks/useNotification";
 import { Button } from "antd";
 import backgroundKneb from "../assets/backgroundKneb.jpg"
+import { useWindowSize } from "../hooks/useWindowSize";
 
 export default function MainPage() {
   const { showNotification } = useNotification();
+  const { isMobile } = useWindowSize()
 
   useEffect(() => {
-    showNotification(
-      <div>
-        <h2>Zapisz się do naszego newslettera!</h2>
-        <Button 
-          type="primary" 
-          onClick={() => console.log("Przekierowanie do stronki z newsletterem") } //TODO: Przekierowanie do strony z formularzem do wypełnienia
-        >
-          Zapisz się
-        </Button>
-      </div>,
-      "info"
-    );
+    showNotification({
+      type: "info",
+      message: "Newsletter KNeB",
+      description: (
+        <div>
+          <h2>Zapisz się do naszego newslettera!</h2>
+          <Button
+            type="primary"
+            onClick={() => console.log("Przekierowanie do stronki z newsletterem")} // TODO: Przekierowanie do strony z formularzem do wypełnienia
+          >
+            Zapisz się
+          </Button>
+        </div>
+      ),
+      placement: 'bottomLeft'
+    });
   }, []);
+
 
   return (
     <div>
-      <img src={backgroundKneb} alt="Background KNeB" width={"100%"} />
+      {!isMobile && (
+        <img
+          src={backgroundKneb}
+          alt="Background KNeB"
+          style={{
+            width: "100%",
+            height: "100vh",
+            objectFit: "cover"
+          }}
+        />
+      )}
+
       <ProjectLinks />
       <Management />
     </div>
