@@ -5,15 +5,16 @@ type NotificationProps = {
   type: "success" | "info" | "warning" | "error";
   message?: string | JSX.Element;
   placement?: "topLeft" | "topRight" | "bottomLeft" | "bottomRight";
+  duration?: number
 };
 
 export function useNotification() {
-  const showNotification = ({ type, message, description, placement }: NotificationProps) => {
+  const showNotification = ({ type, message, description, placement, duration }: NotificationProps) => {
     notification[type]({
       message: message || "Powiadomienie",
       description: description || "Operacja powiodła się",
       placement: placement || "topLeft",
-      duration: 4,
+      duration: duration || 4,
     });
   };
 
