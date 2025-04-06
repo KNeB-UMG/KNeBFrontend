@@ -1,15 +1,11 @@
-import { width } from '@fortawesome/free-brands-svg-icons/fa42Group'
-import React from 'react'
-import type { FormProps } from 'antd';
 import { Button, Form, Input, Card, Flex } from 'antd';
-
 
 type Login = {
   userName?: string;
   password?: string;
 }
 
-export default function LoginPage() {
+export default function Login() {
   return (
     <Flex justify="center" align="center" style={{ height: '100vh' }}>
       <Card style={{ width: 500, borderRadius: 10 }}>

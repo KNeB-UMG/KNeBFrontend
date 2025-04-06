@@ -1,6 +1,5 @@
-import React from 'react';
 import { Button, Form, Input, Card, Flex } from 'antd';
-import useAPI, { getApiUrl } from '../hooks/useAPI';
+import useAPI, { getApiUrl } from '../../hooks/useAPI';
 
 type RegisterProps = {
   email?: string;
@@ -9,11 +8,11 @@ type RegisterProps = {
   last_name?: string;
 };
 
-export default function RegisterPage() {
+export default function Register() {
 
   const [form] = Form.useForm();
 
-  const {call, loading, error, success} = useAPI({
+  const {call, loading, error} = useAPI({
     url: getApiUrl('member/register'),
     method: "POST",
     displayNotification: true
