@@ -6,6 +6,7 @@ import LayoutWrapper from "./components/navigation/LayoutWrapper";
 import { Events } from "./pages/Events";
 import { ThemeProvider } from "./hooks/useTheme";
 import CustomConfigProvider from "./CustomConfigProvider";
+import Register from "./pages/auth/Register";
 
 const App: React.FC = () => {
     
@@ -17,6 +18,7 @@ const App: React.FC = () => {
                         <Routes>
                             <Route path="/" element={<Main />} />
                             <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
                             <Route path="/events" element={<Events />} />
                         </Routes>
                     </LayoutWrapper>

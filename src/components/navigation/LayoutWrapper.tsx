@@ -7,22 +7,27 @@ import { Content } from "antd/es/layout/layout";
 import Footer from "./Footer";
 import { useTheme } from "../../hooks/useTheme";
 import { useWindowSize } from "../../hooks/useWindowSize";
+import { useLocation } from "react-router-dom";
+import { routes } from "./routes";
 
 type LayoutWrapperProps = {
     children: ReactNode
 };
 
 const LayoutWrapper: React.FC<LayoutWrapperProps> = ({ children }) => {
+    const { theme } = useTheme();
+    const { isMobile } = useWindowSize();
+    const location = useLocation();
 
-    const { theme } = useTheme()
-    const { isMobile } = useWindowSize()
+    const currentRoute = routes.find(route => location.pathname.startsWith(`/${route.key}`));
+    const layoutType = currentRoute?.layout ?? 'with-nav';
+
+    const showNavigation = layoutType === 'with-nav';
 
     return (
         <Layout style={{ minHeight: '100vh', backgroundColor: themes[theme].backgroundColor }}>
-            {isMobile ? (
-                <AppSidebar theme={theme}/>
-            ) : (
-                <AppNavbar theme={theme} />
+            {showNavigation && (
+                isMobile ? <AppSidebar theme={theme}/> : <AppNavbar theme={theme} />
             )}
             <Layout>
                 <Content style={{ backgroundColor: themes[theme].backgroundColor }}>
