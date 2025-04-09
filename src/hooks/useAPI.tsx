@@ -47,7 +47,6 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
 
   const call = async (cp?: CallAPISettings) => {
     if (!cp) return await callAPI();
-
     const callProps = typeof cp === "function" ? cp() : cp;
     return await callAPI(callProps);
   };
@@ -61,6 +60,7 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
 
       const headers: { [key: string]: string } = {
         "Content-Type": "application/json",
+        "Accept": "application/json",
         ...(token && { Authorization: `Bearer ${token}` }),
         ...finalProps.headers,
       };
@@ -81,16 +81,25 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
       }
 
       const responseData = await response.json();
+      console.log("response", response);
+      console.log("responseData", responseData);
 
       if (!response.ok) {
         if (finalProps.displayNotification === true) {
-          showNotification(responseData.message, "error");
+          showNotification({
+            type: "error",
+            message: "Błąd",
+            description: responseData?.message,
+          });
         }
-        throw new Error(responseData.message);
+        throw new Error(responseData?.message || "Unknown error");
       }
 
       if (finalProps.displayNotification === true) {
-        showNotification(responseData.message, "success");
+        showNotification({
+          type: "success",
+          description: responseData?.message,
+        });
       }
 
       setSuccess(true);
@@ -100,6 +109,7 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
       return { data: responseData, response };
     } catch (error) {
       setError(error);
+      throw error;
     } finally {
       setLoading(false);
     }

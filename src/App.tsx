@@ -1,11 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import MainPage from "./pages/MainPage";
-import LoginPage from "./pages/LoginPage";
+import Main from "./pages/Main";
+import Login from "./pages/auth/Login";
 import LayoutWrapper from "./components/navigation/LayoutWrapper";
-import { EventsPage } from "./pages/EventsPage";
+import { Events } from "./pages/Events";
 import { ThemeProvider } from "./hooks/useTheme";
 import CustomConfigProvider from "./CustomConfigProvider";
+import Register from "./pages/auth/Register";
 
 const App: React.FC = () => {
     
@@ -15,9 +16,10 @@ const App: React.FC = () => {
                 <Router>
                     <LayoutWrapper>
                         <Routes>
-                            <Route path="/" element={<MainPage />} />
-                            <Route path="/login" element={<LoginPage />} />
-                            <Route path="/events" element={<EventsPage />} />
+                            <Route path="/" element={<Main />} />
+                            <Route path="/login" element={<Login />} />
+                            <Route path="/register" element={<Register />} />
+                            <Route path="/events" element={<Events />} />
                         </Routes>
                     </LayoutWrapper>
                 </Router>

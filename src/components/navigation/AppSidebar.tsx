@@ -12,12 +12,14 @@ type AppSidebarProps = {
     theme: ThemeType;
 };
 
-const AppSidebar = (props: AppSidebarProps) => {
+const AppSidebar = ({ theme }: AppSidebarProps) => {
     const [expanded, setExpanded] = useState(false);
 
     const toggleSidebar = () => {
         setExpanded(!expanded);
     };
+
+    const filteredRoutes = routes.filter(route => route.navigationDisplay !== false);
 
     return (
         <Layout>
@@ -27,27 +29,39 @@ const AppSidebar = (props: AppSidebarProps) => {
                 trigger={null}
                 width={200}
                 theme="light"
-                style={{ backgroundColor: expanded ? themes[props.theme].backgroundColor : 'transparent', position: "fixed", zIndex: 1000 }}
+                style={{
+                    backgroundColor: expanded ? themes[theme].backgroundColor : "transparent",
+                    position: "fixed",
+                    zIndex: 1000,
+                }}
             >
                 <Button
                     type="text"
                     icon={<FontAwesomeIcon icon={faBars} size="2x" />}
                     onClick={toggleSidebar}
-                    style={{ color: themes[props.theme].textColor, margin: "16px" }}
+                    style={{ color: themes[theme].textColor, margin: "16px" }}
                 />
                 {expanded && (
                     <>
                         <Menu mode="inline" theme="light">
-                            {routes.map((route) => (
+                            {filteredRoutes.map(route => (
                                 <Menu.Item
                                     key={route.key}
                                     icon={
-                                        <Tooltip title={route.tooltip} placement="right">
+                                        (route.tooltip && route.icon) ? (
+                                            <Tooltip title={route.tooltip} placement="right">
+                                                <FontAwesomeIcon
+                                                    style={{ color: themes[theme].textColor }}
+                                                    icon={route.icon}
+                                                />
+                                            </Tooltip>
+                                        ) : (
+                                            route.icon &&
                                             <FontAwesomeIcon
-                                                style={{ color: themes[props.theme].textColor }}
+                                                style={{ color: themes[theme].textColor }}
                                                 icon={route.icon}
                                             />
-                                        </Tooltip>
+                                        )
                                     }
                                 >
                                     {route.label}
@@ -55,11 +69,9 @@ const AppSidebar = (props: AppSidebarProps) => {
                             ))}
                         </Menu>
                         <Flex align="center" justify="center">
-                        <StandardToggleTheme />
+                            <StandardToggleTheme />
                         </Flex>
-
                     </>
-
                 )}
             </Sider>
             {expanded && (

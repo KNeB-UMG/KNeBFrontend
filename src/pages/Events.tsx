@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const EventsPage = () => {
+export const Events = () => {
   return (
     <div>EventsPage</div>
   )

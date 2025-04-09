@@ -10,6 +10,15 @@ type AppNavbarProps = {
 };
 
 const AppNavbar = (props: AppNavbarProps) => {
+
+    const menuItems = routes
+        .filter(route => route.navigationDisplay !== false)
+        .map(route => ({
+            label: route.label,
+            key: route.key,
+            icon: route.icon ? <FontAwesomeIcon icon={route.icon} /> : undefined,
+        }));
+
     return (
         <Header
             style={{
@@ -17,26 +26,22 @@ const AppNavbar = (props: AppNavbarProps) => {
                 color: themes[props.theme].textColor,
             }}
         >
-                <Menu
-                    theme={props.theme}
-                    mode="horizontal"
-                    style={{
-                        backgroundColor: "transparent",
-                        color: themes[props.theme].textColor,
-                    }}
-                    items={[
-                        ...routes.map((route) => ({
-                            label: route.label,
-                            key: route.key,
-                            icon: <FontAwesomeIcon icon={route.icon} />,
-                        })),
-                        {
-                            key: 'toggle-theme',
-                            label: (<StandardToggleTheme />),
-                            icon: null,
-                        },
-                    ]}
-                />
+            <Menu
+                theme={props.theme}
+                mode="horizontal"
+                style={{
+                    backgroundColor: "transparent",
+                    color: themes[props.theme].textColor,
+                }}
+                items={[
+                    ...menuItems,
+                    {
+                        key: 'toggle-theme',
+                        label: (<StandardToggleTheme />),
+                        icon: null,
+                    },
+                ]}
+            />
         </Header>
     );
 };

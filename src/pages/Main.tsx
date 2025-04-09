@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Management from "../components/main/Management";
+import Management from "../components/main/management/Management";
 import ProjectLinks from "../components/main/ProjectLinks";
 import { useNotification } from "../hooks/useNotification";
 import { Button } from "antd";
