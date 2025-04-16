@@ -1,7 +1,8 @@
 import useAPI, { getApiUrl } from '../../hooks/useAPI';
-import { Avatar, Space, Typography, Divider, Spin } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
+import { Avatar, Space, Typography, Divider, Spin, Tooltip } from 'antd';
 import { useWindowSize } from '../../hooks/useWindowSize';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 const { Title, Text } = Typography;
 
@@ -13,8 +14,13 @@ type Member = {
   position: string;
   position_translated: string;
   description: string;
-  photo_url: string;
+  photo: {
+    data: string;
+    id: number | null;
+  }
 };
+
+//TODO: Wait for API to change photo display
 
 export default function MemberDisplay() {
   const { data, loading } = useAPI({
@@ -29,46 +35,79 @@ export default function MemberDisplay() {
   const staff = members.filter(member => member.position !== 'Member');
   const restMembers = members.filter(member => member.position === 'Member');
 
+  const avatarSizeStaff = isMobile ? 64 : 80;
+  const avatarSizeMember = isMobile ? 48 : 64;
+
   return (
     <Spin spinning={loading}>
       <center>
-        <div>
-          <Title>Zarząd Koła</Title>
-          <Space direction="horizontal" size={40} align="center" wrap>
-            {staff.map(member => (
-              <div key={member.id} style={{ textAlign: 'center' }}>
-                <Space direction="vertical" size="small">
-                  <Avatar
-                    size={isMobile ? 64 : 80}
-                    icon={member.photo_url === 'DEFAULT-PROFILE-PICTURE' ? <UserOutlined /> : undefined}
-                    src={member.photo_url !== 'DEFAULT-PROFILE-PICTURE' ? member.photo_url : undefined}
-                  />
-                  <Text style={{ fontSize: isMobile ? 14 : 16 }}>{member.full_name}</Text>
-                </Space>
-                <Divider />
-                <Text strong style={{ fontSize: isMobile ? 14 : 16 }}>{member.position_translated}</Text>
-              </div>
-            ))}
-          </Space>
-        </div>
-
-        <div>
-          <Title level={2}>Członkowie Koła</Title>
-          <Space direction="horizontal" size={30} align="center" wrap>
-            {restMembers.map(member => (
-              <div key={member.id} style={{ textAlign: 'center' }}>
-                <Space direction="vertical" size="small">
-                  <Avatar
-                    size={isMobile ? 48 : 64}
-                    icon={member.photo_url === 'DEFAULT-PROFILE-PICTURE' ? <UserOutlined /> : undefined}
-                    src={member.photo_url !== 'DEFAULT-PROFILE-PICTURE' ? member.photo_url : undefined}
-                  />
-                  <Text style={{ fontSize: isMobile ? 12 : 14 }}>{member.full_name}</Text>
-                </Space>
-              </div>
-            ))}
-          </Space>
-        </div>
+        <Space direction='vertical'>
+          <div>
+            <Title>Zarząd Koła</Title>
+            <Space
+              size={isMobile ? 20 : 40}
+              wrap
+              style={{ justifyContent: 'center' }}
+            >
+              {staff.map((member) => (
+                <div key={member.id} style={{width: isMobile ? 100 : 120}}>
+                  <Avatar size={avatarSizeStaff}>
+                    {member.photo?.data !== 'DEFAULT-PROFILE-PICTURE' && member.photo?.data ? (
+                      <img src={member.photo.data} />
+                    ) : (
+                      <FontAwesomeIcon icon={faUser} size="lg" />
+                    )}
+                  </Avatar>
+                  <div style={{ marginTop: 8 }}>
+                    <Tooltip title={member.first_name}>
+                      <Text ellipsis style={{width: isMobile ? 90 : 110,}}>
+                        {member.first_name}
+                      </Text>
+                    </Tooltip>
+                    <br />
+                    <Tooltip title={member.last_name}>
+                      <Text ellipsis style={{width: isMobile ? 90 : 110,}}>
+                        {member.last_name}
+                      </Text>
+                    </Tooltip>
+                  </div>
+                  <Divider style={{ borderBlockWidth: 3 }} />
+                  <Text strong>{member.position_translated}</Text>
+                </div>
+              ))}
+            </Space>
+          </div>
+          
+          <div>
+            <Title level={2}>Członkowie Koła</Title>
+            <Space
+              size={isMobile ? 20 : 30}
+              wrap
+              style={{ justifyContent: 'center' }}
+            >
+              {restMembers.map((member) => (
+                <div key={member.id} style={{width: isMobile ? 100 : 120}}>
+                  <Avatar size={avatarSizeMember}>
+                    {member.photo?.data !== 'DEFAULT-PROFILE-PICTURE' && member.photo?.data ? (
+                      <img src={member.photo.data} />
+                    ) : (
+                      <FontAwesomeIcon icon={faUser} />
+                    )}
+                  </Avatar>
+                  <div style={{ marginTop: 8 }}>
+                    <Tooltip title={member.first_name}>
+                      <Text ellipsis>{member.first_name}</Text>
+                    </Tooltip>
+                    <br />
+                    <Tooltip title={member.last_name}>
+                      <Text ellipsis>{member.last_name}</Text>
+                    </Tooltip>
+                  </div>
+                </div>
+              ))}
+            </Space>
+          </div>
+        </Space>
       </center>
     </Spin>
   );
