@@ -1,16 +1,16 @@
 import { Header } from "antd/es/layout/layout";
-import { themes, ThemeType } from "../../theme";
 import { Menu } from "antd";
 import { routes } from "./routes";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { ThemeType } from "../../theme";
 import StandardToggleTheme from "../standard/StandardToggleTheme";
+import StandardKnebLogo from "../standard/StandardKnebLogo";
 
 type AppNavbarProps = {
     theme: ThemeType;
 };
 
-const AppNavbar = (props: AppNavbarProps) => {
-
+const AppNavbar = ({ theme }: AppNavbarProps) => {
     const menuItems = routes
         .filter(route => route.navigationDisplay !== false)
         .map(route => ({
@@ -22,18 +22,25 @@ const AppNavbar = (props: AppNavbarProps) => {
     return (
         <Header
             style={{
-                backgroundColor: themes[props.theme].primaryColor,
-                color: themes[props.theme].textColor,
+                position: "absolute",
+                top: 30,
+                left: 0,
+                right: 0,
+                display: "flex",
+                justifyContent: "center",
+                zIndex: 1000,
+                backgroundColor: "transparent",
             }}
         >
             <Menu
-                theme={props.theme}
                 mode="horizontal"
-                style={{
-                    backgroundColor: "transparent",
-                    color: themes[props.theme].textColor,
-                }}
+                theme={theme}
                 items={[
+                    {
+                        key: 'logo',
+                        label: (<StandardKnebLogo size="small"/>),
+                        icon: null,
+                    },
                     ...menuItems,
                     {
                         key: 'toggle-theme',
@@ -41,10 +48,16 @@ const AppNavbar = (props: AppNavbarProps) => {
                         icon: null,
                     },
                 ]}
+                style={{
+                    borderRadius: "50px",
+                    padding: "0 30px",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "20px",
+                }}
             />
         </Header>
     );
 };
-
 
 export default AppNavbar;

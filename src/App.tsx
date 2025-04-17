@@ -7,24 +7,28 @@ import { Events } from "./pages/Events";
 import { ThemeProvider } from "./hooks/useTheme";
 import CustomConfigProvider from "./CustomConfigProvider";
 import Register from "./pages/auth/Register";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 const App: React.FC = () => {
-    
+
     return (
-        <ThemeProvider>
-            <CustomConfigProvider>
-                <Router>
-                    <LayoutWrapper>
-                        <Routes>
-                            <Route path="/" element={<Main />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/register" element={<Register />} />
-                            <Route path="/events" element={<Events />} />
-                        </Routes>
-                    </LayoutWrapper>
-                </Router>
-            </CustomConfigProvider>
-        </ThemeProvider>
+        <Provider store={store}>
+            <ThemeProvider>
+                <CustomConfigProvider>
+                    <Router>
+                        <LayoutWrapper>
+                            <Routes>
+                                <Route path="/" element={<Main />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/register" element={<Register />} />
+                                <Route path="/events" element={<Events />} />
+                            </Routes>
+                        </LayoutWrapper>
+                    </Router>
+                </CustomConfigProvider>
+            </ThemeProvider>
+        </Provider>
     );
 };
 

@@ -1,8 +1,8 @@
-import { Col, Layout, Row, Flex, Typography, Space } from 'antd';
-import logo from '../../assets/logoKneb.png';
+import { Col, Layout, Row, Typography, Space } from 'antd';
 import { Link } from 'react-router-dom';
+import StandardKnebLogo from '../standard/StandardKnebLogo';
 
-const { Text, Title } = Typography;
+const { Text } = Typography;
 
 export default function Footer() {
   return (
@@ -32,13 +32,7 @@ export default function Footer() {
           </Space>
         </Col>
         <Col xs={24} sm={8} md={8} lg={8}>
-          <Flex align="center" justify="center" gap="small">
-            <img src={logo} alt="Logo KNeB" style={{ width: '6rem' }} />
-            <Space direction="vertical" size="small" style={{ textAlign: 'left' }}>
-              <Title level={4} style={{ color: '#0071BC', margin: 0 }}>KOŁO NAUKOWE</Title>
-              <Title level={4} style={{ color: '#000000', margin: 0 }}>E-BIZNESU</Title>
-            </Space>
-          </Flex>
+          <StandardKnebLogo/>
         </Col>
       </Row>
     </Layout.Footer>
