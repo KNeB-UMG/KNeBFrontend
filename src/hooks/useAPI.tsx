@@ -9,6 +9,7 @@ export type CallAPIProps = {
   body?: object;
   headers?: object;
   displayNotification?: boolean;
+  successDispatch?: any
 };
 
 export type CallAPIFunction = (...args: any[]) => CallAPIProps;

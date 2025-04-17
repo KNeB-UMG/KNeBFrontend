@@ -1,10 +1,10 @@
 import { useEffect } from "react";
-import Management from "../components/main/management/Management";
 import ProjectLinks from "../components/main/ProjectLinks";
 import { useNotification } from "../hooks/useNotification";
 import { Button } from "antd";
 import backgroundKneb from "../assets/backgroundKneb.jpg"
 import { useWindowSize } from "../hooks/useWindowSize";
+import Management from "../components/main/Management";
 
 export default function MainPage() {
   const { showNotification } = useNotification();
