@@ -1,7 +1,6 @@
 import { Button, Form, Input, Card, Flex } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import useAPI, { getApiUrl } from '../../hooks/useAPI';
-
 type LoginProps = {
   email?: string;
   password?: string;

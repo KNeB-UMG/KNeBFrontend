@@ -1,10 +1,10 @@
 import useAPI, { getApiUrl } from '../../hooks/useAPI';
-import { Avatar, Space, Typography, Divider, Spin, Tooltip } from 'antd';
+import { Avatar, Space, Divider, Spin, Tooltip } from 'antd';
 import { useWindowSize } from '../../hooks/useWindowSize';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-
-const { Title, Text } = Typography;
+import StandardTitle from '../standard/StandardTitle';
+import StandardText from '../standard/StandardText';
 
 type Member = {
   id: number;
@@ -43,7 +43,7 @@ export default function MemberDisplay() {
       <center>
         <Space direction='vertical'>
           <div>
-            <Title>Zarząd Koła</Title>
+            <StandardTitle>Zarząd Koła</StandardTitle>
             <Space
               size={isMobile ? 20 : 40}
               wrap
@@ -60,26 +60,26 @@ export default function MemberDisplay() {
                   </Avatar>
                   <div style={{ marginTop: 8 }}>
                     <Tooltip title={member.first_name}>
-                      <Text ellipsis style={{width: isMobile ? 90 : 110,}}>
+                      <StandardText ellipsis style={{width: isMobile ? 90 : 110,}}>
                         {member.first_name}
-                      </Text>
+                      </StandardText>
                     </Tooltip>
                     <br />
                     <Tooltip title={member.last_name}>
-                      <Text ellipsis style={{width: isMobile ? 90 : 110,}}>
+                      <StandardText ellipsis style={{width: isMobile ? 90 : 110,}}>
                         {member.last_name}
-                      </Text>
+                      </StandardText>
                     </Tooltip>
                   </div>
                   <Divider style={{ borderBlockWidth: 3 }} />
-                  <Text strong>{member.position_translated}</Text>
+                  <StandardText strong>{member.position_translated}</StandardText>
                 </div>
               ))}
             </Space>
           </div>
           
           <div>
-            <Title level={2}>Członkowie Koła</Title>
+            <StandardTitle level={2}>Członkowie Koła</StandardTitle>
             <Space
               size={isMobile ? 20 : 30}
               wrap
@@ -96,11 +96,11 @@ export default function MemberDisplay() {
                   </Avatar>
                   <div style={{ marginTop: 8 }}>
                     <Tooltip title={member.first_name}>
-                      <Text ellipsis>{member.first_name}</Text>
+                      <StandardText ellipsis>{member.first_name}</StandardText>
                     </Tooltip>
                     <br />
                     <Tooltip title={member.last_name}>
-                      <Text ellipsis>{member.last_name}</Text>
+                      <StandardText ellipsis>{member.last_name}</StandardText>
                     </Tooltip>
                   </div>
                 </div>

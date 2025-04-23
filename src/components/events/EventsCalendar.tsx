@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import type { BadgeProps, CalendarProps } from 'antd';
-import { Badge, Calendar, Alert, List, Typography } from 'antd';
+import { Badge, Calendar, Alert, List } from 'antd';
 import type { Dayjs } from 'dayjs';
 import dayjs from 'dayjs';
 import 'dayjs/locale/pl';
+import StandardTitle from '../standard/StandardTitle';
 
 dayjs.locale('pl');
 
-const { Title } = Typography;
 
 const getEventsList = (value: Dayjs) => {
   let listData: { type: string; content: string }[] = [];
@@ -107,7 +107,7 @@ const EventsCalendar: React.FC = () => {
           onPanelChange={onPanelChange} 
         />
         <div>
-          <Title level={3}>Legenda typów wydarzeń:</Title>
+          <StandardTitle level = {3}>Legenda typów wydarzeń:</StandardTitle>
           <List
             dataSource={[
               { color: 'green', text: 'Mniej ważne wydarzenie' },

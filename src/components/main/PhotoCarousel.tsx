@@ -1,8 +1,9 @@
 import { Carousel, Typography, Row, Col, Card} from "antd";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact, faJs, faPython } from '@fortawesome/free-brands-svg-icons';
-const { Title, Text } = Typography;
 import { useState, useEffect } from "react";
+import StandardTitle from "../standard/StandardTitle";
+import StandardText from "../standard/StandardText";
 
 const projects = [
   { id: 1, title: "projekt1", image: "https://i.natgeofe.com/n/c9107b46-78b1-4394-988d-53927646c72b/1095_16x9.jpg", techs: ['React']},
@@ -31,10 +32,10 @@ const ProjectCard: React.FC<ProjectProps> = ({ title, image, techs }) => (
   <Card hoverable style={{ margin: "15px 10%"}} cover={ <img alt="project" src={image} style={{ height: "200px", objectFit: "cover" }} />} >
     <Row>
       <Col xs={24}>
-        <Title level = {4} style={{ marginTop: "0px", marginBottom: "0px"}}>
+        <StandardTitle level = {4} style={{ marginTop: "0px", marginBottom: "0px"}}>
           {title}
-        </Title>
-        {techs.map((tech) => (techIcons[tech] && <Text key={tech} style={{ fontSize: '30px' }}>{techIcons[tech]} </Text>))}
+        </StandardTitle>
+        {techs.map((tech) => (techIcons[tech] && <StandardText key={tech} style={{ fontSize: '30px' }}>{techIcons[tech]} </StandardText>))}
       </Col>
     </Row>
   </Card>

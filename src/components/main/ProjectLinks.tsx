@@ -1,12 +1,13 @@
-import { Col, Row, Typography, Card } from "antd";
+import { Col, Row, Card } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { themes, ThemeType } from "../../theme";
 import { useTheme } from "../../hooks/useTheme";
 import styled from "styled-components";
+import StandardTitle from "../standard/StandardTitle";
+import StandardText from "../standard/StandardText";
 
-const { Title, Text } = Typography;
 
 const ProjectLinkCard = styled(Card)<{ themeName: ThemeType }>`
   box-shadow: ${(p) => themes?.[p.themeName]?.boxShadow};
@@ -33,8 +34,8 @@ const ProjectLink: React.FC<ProjectLinkProps> = ({ title, description }) => {
     <ProjectLinkCard theme={theme}>
       <Row align="middle">
         <Col span={21}>
-          <Title level={4}>{title}</Title>
-          <Text strong>{description}</Text>
+          <StandardTitle level={4}>{title}</StandardTitle>
+          <StandardText strong>{description}</StandardText>
         </Col>
         <Col span={3} style={{ textAlign: "center" }}>
           <FontAwesomeIcon icon={faChevronRight} size="2x" color="grey" />
@@ -66,8 +67,8 @@ export default function ProjectLinks() {
     <div>
       <Row style={{ padding: "20px", textAlign: "center" }}>
         <Col span={24}>
-          <Title>Nasze Projekty</Title>
-          <Title level={4}>Projekty stworzone przez członków naszego koła</Title>
+          <StandardTitle>Nasze Projekty</StandardTitle>
+          <StandardTitle level={4}>Projekty stworzone przez członków naszego koła</StandardTitle>
         </Col>
       </Row>
       <Row
