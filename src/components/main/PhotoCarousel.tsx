@@ -1,11 +1,18 @@
-import { Carousel, Typography, Row, Col, Card} from "antd";
+import { Carousel, Row, Col, Card} from "antd";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faReact, faJs, faPython } from '@fortawesome/free-brands-svg-icons';
 import { useState, useEffect } from "react";
 import StandardTitle from "../standard/StandardTitle";
 import StandardText from "../standard/StandardText";
 
-const projects = [
+type ProjectsProps = {
+  id: number,
+  title: string,
+  image: string,
+  techs: Technology[]
+}
+
+const projects:ProjectsProps[] = [
   { id: 1, title: "projekt1", image: "https://i.natgeofe.com/n/c9107b46-78b1-4394-988d-53927646c72b/1095_16x9.jpg", techs: ['React']},
   { id: 2, title: "projekt2", image: "https://i.natgeofe.com/n/c9107b46-78b1-4394-988d-53927646c72b/1095_16x9.jpg", techs: ['React']},
   { id: 3, title: "projekt3", image: "https://i.natgeofe.com/n/c9107b46-78b1-4394-988d-53927646c72b/1095_16x9.jpg", techs: ['React', 'Python']},
