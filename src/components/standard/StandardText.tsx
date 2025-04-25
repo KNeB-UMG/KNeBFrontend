@@ -1,20 +1,15 @@
-import React from 'react';
 import { Typography } from 'antd';
-import { CSSProperties } from 'styled-components';
+import type { TextProps } from 'antd/es/typography/Text';
+import type { ReactNode } from 'react';
 
-type StandardTextProps = {
-  children?: React.ReactNode;
-  center?: boolean;
-  style?: CSSProperties;
-  strong?: boolean;
-  ellipsis?: boolean;
-}
+type StandardTextProps = Omit<TextProps, 'children'> & {
+  children?: ReactNode;
+};
 
-const StandardText: React.FC<StandardTextProps> = ({ children, ...props }) => {
-
+const StandardText: React.FC<StandardTextProps> = ({ children, ...rest }) => {
 
   return (
-    <Typography.Text {...props}>
+    <Typography.Text {...rest}>
       {children}
     </Typography.Text>
   );

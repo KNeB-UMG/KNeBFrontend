@@ -1,10 +1,14 @@
 import { Button } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
 import { useNotification } from '../../hooks/useNotification';
+import { useDispatch } from 'react-redux';
+import { userSlice } from '../../store/user/userSlice';
 
 export default function LoginButton() {
   const navigate = useNavigate()
   const { showNotification } = useNotification();
+
+  const dispatch = useDispatch()
 
   const token = sessionStorage.getItem('token')
 
@@ -21,6 +25,7 @@ export default function LoginButton() {
         placement: 'topRight',
         duration:2
       });
+      dispatch(userSlice.actions.logout())
   }
 
   return (

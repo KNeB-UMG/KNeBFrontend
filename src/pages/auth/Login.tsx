@@ -1,6 +1,7 @@
 import { Button, Form, Input, Card, Flex } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import useAPI, { getApiUrl } from '../../hooks/useAPI';
+import useAPI from '../../hooks/useAPI';
+import { LoginUser } from '../../store/user/userEndpoints';
 type LoginProps = {
   email?: string;
   password?: string;
@@ -11,11 +12,7 @@ export default function Login() {
 
   const [form] = Form.useForm();
 
-  const { call, loading } = useAPI({
-    url: getApiUrl('member/login'),
-    method: "POST",
-    displayNotification:true
-  });
+  const { call, loading } = useAPI(LoginUser);
 
   const handleLogin = (values: LoginProps) => {
     call({

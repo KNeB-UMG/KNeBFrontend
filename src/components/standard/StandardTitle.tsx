@@ -1,17 +1,15 @@
 import React from 'react';
 import { Typography } from 'antd';
-import { CSSProperties } from 'styled-components';
+import type { TitleProps } from 'antd/es/typography/Title';
+import type { ReactNode } from 'react';
 
-type StandardTitleProps = {
-  children?: React.ReactNode;
-  level?: 1 | 2 | 3 | 4 | 5;
-  style?: CSSProperties;
-  
-}
+type StandardTitleProps = Omit<TitleProps, 'children'> & {
+  children?: ReactNode;
+};
 
-const StandardTitle: React.FC<StandardTitleProps> = ({ children, level = 1, ...props }) => {
+const StandardTitle: React.FC<StandardTitleProps> = ({ children, ...props }) => {
   return (
-    <Typography.Title level={level} {...props}>
+    <Typography.Title {...props}>
       {children}
     </Typography.Title>
   );

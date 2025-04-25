@@ -17,7 +17,7 @@ import React, {
     loading?: boolean
   };
   
-  export const useModal = (r?: any) => {
+  export const useStandardModal = (r?: any) => {
     const ref: any = useRef(r);
     const open = () => ref.current?.setIsOpen(true);
     const close = () => ref.current?.setIsOpen(false);

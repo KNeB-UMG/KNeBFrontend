@@ -1,5 +1,7 @@
 import { Button, Form, Input, Card, Flex } from 'antd';
-import useAPI, { getApiUrl } from '../../hooks/useAPI';
+import useAPI from '../../hooks/useAPI';
+import { RegisterUser } from '../../store/user/userEndpoints';
+import { useNavigate } from 'react-router-dom';
 
 type RegisterProps = {
   email?: string;
@@ -12,17 +14,18 @@ type RegisterProps = {
 export default function Register() {
 
   const [form] = Form.useForm();
+  const navigate = useNavigate()
 
-  const {call, loading} = useAPI({
-    url: getApiUrl('member/register'),
-    method: "POST",
-    displayNotification:true
-  });
+  const {call, loading} = useAPI(RegisterUser);
 
   const handleRegister = (values: RegisterProps) => {
     const { confirmPassword, ...rest } = values;
     call({
       body: rest
+    }).then((res: any) => {
+      if (res.response.status === 200) {
+        navigate('/login')
+      }
     });
   };
 

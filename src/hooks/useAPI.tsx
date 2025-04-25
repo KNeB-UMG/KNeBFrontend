@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNotification } from "./useNotification";
+import { useDispatch } from "react-redux";
+import { UnknownAction } from "@reduxjs/toolkit";
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -9,7 +11,7 @@ export type CallAPIProps = {
   body?: object;
   headers?: object;
   displayNotification?: boolean;
-  successDispatch?: any
+  successDispatch?: (data: any) => UnknownAction;
 };
 
 export type CallAPIFunction = (...args: any[]) => CallAPIProps;
@@ -26,6 +28,8 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
   const [data, setData] = useState<any>(undefined);
   const [error, setError] = useState<any>(undefined);
   const [success, setSuccess] = useState(false);
+
+  const dispatch = useDispatch();
 
   const { showNotification } = useNotification();
 
@@ -76,14 +80,17 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
 
       const response = await fetch(getUrl(finalProps.url)!, requestOptions);
 
+      const responseData = await response.json();
+
       if (response.status === 204) {
         setData([]);
+        if (finalProps.successDispatch && responseData) {
+          dispatch(finalProps.successDispatch(responseData));
+        }
         return { data: null, response };
       }
-
-      const responseData = await response.json();
-      console.log("response", response);
-      console.log("responseData", responseData);
+      // console.log("response", response);
+      // console.log("responseData", responseData);
 
       if (!response.ok) {
         if (finalProps.displayNotification === true) {
@@ -94,13 +101,19 @@ export default function useAPI(props: CallAPIProps, callInstantly = false) {
           });
         }
         throw new Error(responseData?.message || "Unknown error");
-      }
+      } else {
 
-      if (finalProps.displayNotification === true) {
-        showNotification({
-          type: "success",
-          description: responseData?.message,
-        });
+        if (finalProps.successDispatch && responseData) {
+          dispatch(finalProps.successDispatch(responseData));
+        }
+
+        if (finalProps.displayNotification === true) {
+          showNotification({
+            type: "success",
+            description: responseData?.message,
+          });
+        }
+
       }
 
       setSuccess(true);

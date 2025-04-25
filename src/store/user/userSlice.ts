@@ -10,10 +10,15 @@ export const userSlice = createSlice({
     initialState,
     reducers: {
         get(state, action: PayloadAction<User>) {
+            // TODO
             state.user = action.payload;
         },
         update(state, action: PayloadAction<User>) {
+            // TODO
             state.user = action.payload;
+        },
+        login(state, action) {
+            state.user = action.payload.user;
         },
         logout(state) {
             state.user = null;
