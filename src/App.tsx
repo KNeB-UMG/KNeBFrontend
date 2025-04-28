@@ -9,6 +9,7 @@ import CustomConfigProvider from "./CustomConfigProvider";
 import Register from "./pages/auth/Register";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import Settings from "./pages/Settings";
 
 const App: React.FC = () => {
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/register" element={<Register />} />
                                 <Route path="/events" element={<Events />} />
+                                <Route path="/settings" element={<Settings />} />
                             </Routes>
                         </LayoutWrapper>
                     </Router>
