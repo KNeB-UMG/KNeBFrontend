@@ -1,0 +1,74 @@
+header {
+    position: absolute;
+    top: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2.5em;
+
+    background-color: #fff;
+    padding: .5em 2em;
+    border-radius: 2em;
+    z-index: 100;
+}
+
+header .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5em;
+}
+
+header .logo .logo-icon {
+    height: 5em;
+}
+
+header .logo .logo-text {
+    height: 5em;
+}
+
+header .option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+
+    text-decoration: none;
+}
+
+header .option p.option-text {
+    width: auto;
+    white-space: nowrap;
+
+    font-size: 1.2em;
+    line-height: 1.2em;
+    color: #131313;
+}
+
+header .option p.option-text.active {
+    color: #1677FF;
+    text-decoration-color: #1677FF;
+}
+
+header .option svg.option-icon {
+    width: 1.3em;
+    height: 1.3em;
+}
+
+header .option svg.option-icon path {
+    fill: black;
+}
+
+header .option.active svg.option-icon path {
+    fill: #1677FF;
+}
+
+header .option:hover p.option-text {
+    text-decoration: underline;
+    text-decoration-color: currentColor;
+}
