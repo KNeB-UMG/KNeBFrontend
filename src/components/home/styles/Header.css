@@ -10,7 +10,7 @@ header {
     align-items: center;
     gap: 2.5em;
 
-    background-color: #fff;
+    background-color: var(--background, #fff);
     padding: .5em 2em;
     border-radius: 2em;
     z-index: 100;
@@ -46,13 +46,14 @@ header .option p.option-text {
     white-space: nowrap;
 
     font-size: 1.2em;
+    font-weight: 100;
     line-height: 1.2em;
-    color: #131313;
+    color: var(--text, #131313);
 }
 
 header .option p.option-text.active {
-    color: #1677FF;
-    text-decoration-color: #1677FF;
+    color: var(--primary, #1677FF);
+    text-decoration-color: var(--primary, #1677FF);
 }
 
 header .option svg.option-icon {
@@ -61,14 +62,34 @@ header .option svg.option-icon {
 }
 
 header .option svg.option-icon path {
-    fill: black;
+    fill: var(--text, #131313);
 }
 
 header .option.active svg.option-icon path {
-    fill: #1677FF;
+    fill: var(--primary, #1677FF);
 }
 
 header .option:hover p.option-text {
     text-decoration: underline;
     text-decoration-color: currentColor;
+}
+
+button.theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    padding: .25em;
+    cursor: pointer;
+    color: var(--text, #131313);
+}
+
+button.theme-toggle .theme-toggle-icon {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+button.theme-toggle:hover {
+    color: var(--primary, #1677FF);
 }
