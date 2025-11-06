@@ -33,6 +33,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     root.style.setProperty("--primary", theme.primary);
     root.style.setProperty("--background", theme.background);
+    root.style.setProperty("--card-background", theme.cardBackground);
     root.style.setProperty("--text", theme.text);
   }, [theme]);
 

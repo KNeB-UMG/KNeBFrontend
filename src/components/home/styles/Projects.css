@@ -1,0 +1,91 @@
+.projects {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+
+    background-color: var(--background, #fff);
+}
+
+.projects h2 {
+    font-size: 2.5em;
+    font-weight: 800;
+
+    color: var(--text, #131313);
+}
+
+.projects p.description {
+    font-size: 1.2em;
+    font-weight: 300;
+
+    color: var(--text, #131313);
+    text-align: center;
+}
+
+.projects .projects-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2em;
+
+    margin-top: 4em;
+
+    width: 80%;
+}
+
+.projects .projects-cards .card {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex: 0 0 45%;
+
+    padding: 2em 1em 2em 2em;
+
+    background-color: var(--card-background, #F9F9F9);
+    border-radius: 1em;
+    box-shadow: 0 0 1em 0 rgba(0, 0, 0, 0.3);
+
+    cursor: pointer;
+}
+
+.projects .projects-cards .card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 1em;
+    width: 80%;
+}
+
+.projects .projects-cards .card-content h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+
+    color: var(--text, #131313);
+}
+
+.projects .projects-cards .card-content p {
+    font-size: 1.2em;
+    font-weight: 300;
+
+    color: var(--text, #131313);
+}
+
+.projects .projects-cards .card-icon {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1em;
+    width: 20%;
+}
+
+.projects .projects-cards .card-icon svg {
+    width: 2.5em;
+    height: 2.5em;
+
+    color: var(--text, #131313);
+}

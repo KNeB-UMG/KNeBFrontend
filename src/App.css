@@ -6,10 +6,13 @@
 
 body {
   font-family: 'Inter', sans-serif;
+  background-color: var(--background, #fff);
 }
 
 .home {
   display: flex;
   flex-direction: column;
+  gap: 4em;
   width: 100%;
+  margin-bottom: 5em;
 }
