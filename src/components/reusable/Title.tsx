@@ -4,7 +4,9 @@ import './styles/Title.css'
 
 const Title: React.FC<{ text: string }> = ({ text }) => {
   return (
-    <h2> {text} </h2>
+    <h2 className={`${text === 'Nasze projekty' ? 'projects' : ''}`}>
+      {text}
+    </h2>
   )
 }
 
