@@ -3,6 +3,7 @@ import React from 'react'
 import Header from '../components/home/Header'
 import Hero from '../components/home/Hero'
 import Projects from '../components/home/Projects'
+import Management from '../components/home/Management'
 
 const Home: React.FC = () => {
   return (
@@ -10,6 +11,7 @@ const Home: React.FC = () => {
       <Header />
       <Hero />
       <Projects />
+      <Management />
     </div>
   )
 }

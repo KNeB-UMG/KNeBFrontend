@@ -1,5 +1,7 @@
 import React from 'react'
 
+import Title from '../reusable/Title'
+
 import './styles/Projects.css'
 
 interface Project {
@@ -37,7 +39,7 @@ const Projects: React.FC = () => {
 
   return (
     <section className='projects'>
-        <h2> Nasze projekty </h2>
+        <Title text='Nasze projekty' />
         <p className='description'> Projekty stworzone przez <br /> członków naszego koła </p>
         <div className='projects-cards'>
           {projects.map((project) => (
