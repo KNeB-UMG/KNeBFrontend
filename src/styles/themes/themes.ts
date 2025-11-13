@@ -3,6 +3,7 @@ interface ThemeInterface {
     background: string;
     cardBackground: string;
     text: string;
+    boxShadow: string,
 }
 
 const lightTheme: ThemeInterface = {
@@ -10,6 +11,7 @@ const lightTheme: ThemeInterface = {
     background: '#F9F9F9',
     cardBackground: "#F9F9F9",
     text: '#131313',
+    boxShadow: 'rgba(0, 0, 0, 0.3)'
 }
 
 const darkTheme: ThemeInterface = {
@@ -17,6 +19,7 @@ const darkTheme: ThemeInterface = {
     background: '#001529',
     cardBackground: "#001d36",
     text: '#F3F3F3',
+    boxShadow: 'rgba(0, 0, 0, 0.6)'
 }
 
 export default {

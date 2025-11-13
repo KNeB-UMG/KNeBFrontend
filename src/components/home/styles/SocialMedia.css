@@ -34,4 +34,6 @@
 
 .socialMedia .medias .mediaBlock h3 {
     font-size: 1.5em;
+
+    color: var(--text, #131313);
 }

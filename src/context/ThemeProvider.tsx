@@ -35,6 +35,7 @@ const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
     root.style.setProperty("--background", theme.background);
     root.style.setProperty("--card-background", theme.cardBackground);
     root.style.setProperty("--text", theme.text);
+    root.style.setProperty('--box-shadow', theme.boxShadow)
   }, [theme]);
 
   // provide the theme and toggleTheme function to the context

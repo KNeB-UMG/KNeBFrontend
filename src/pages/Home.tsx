@@ -5,6 +5,7 @@ import Hero from '../components/home/Hero'
 import Projects from '../components/home/Projects'
 import Management from '../components/home/Management'
 import SocialMedia from '../components/home/SocialMedia'
+import Footer from '../components/reusable/Footer'
 
 const Home: React.FC = () => {
   return (
@@ -14,6 +15,7 @@ const Home: React.FC = () => {
       <Projects />
       <Management />
       <SocialMedia />
+      <Footer />
     </div>
   )
 }
