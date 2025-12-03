@@ -3,15 +3,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: var(--background, #fff);
-}
-
-.home {
-  display: flex;
-  flex-direction: column;
-  gap: 5em;
-  width: 100%;
-}
