@@ -13,7 +13,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 12em 2em 4em 2em;
+    padding: 15em 2em 6em 2em;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
@@ -164,7 +164,7 @@
 
 @media (max-width: 768px) {
     .hero-content {
-        padding: 10em 1.5em 3em 1.5em;
+        padding: 12em 1.5em 4em 1.5em;
         gap: 3em;
     }
 

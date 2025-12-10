@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Hero from '../components/home/Hero'
+import Projects from '../components/home/Projects'
 import ContactUsForm from '../components/other/ContactUsForm'
 
 interface HomeProps {
@@ -11,6 +12,7 @@ const Home: React.FC<HomeProps> = ({ onJoinClick }) => {
   return (
     <div className='home'>
       <Hero onJoinClick={onJoinClick} />
+      <Projects />
       <ContactUsForm />
     </div>
   )
