@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: .75em 1.25em;
+
+    width: 100%;
+    background-color: var(--primary);
+}
+
+header .logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+header .logo img {
+    height: 7em;
+    width: 7em;
+    margin: 0;
+}
+
+header .logo p.logo-text {
+    font-size: 1.25em;
+    font-family: 'Cinzel Decorative', 'Inter', serif;
+    font-weight: 700;
+    background: var(--secondary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header .menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25em;
+}
+
+header .menu p {
+    font-size: 1.35em;
+    font-weight: 500;
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--light-text);
+    position: relative;
+    transition: transform 0.2s ease, color 0.2s ease;
+    cursor: pointer;
+}
+
+header .menu p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.2em;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.25s ease;
+}
+
+header .menu p:hover {
+    color: var(--secondary);
+    transform: translateY(-1px);
+}
+
+header .menu p:hover::after {
+    width: 100%;
+}
+
+header .menu button.join {
+    outline: none;
+    border: none;
+    padding: .5em 1em;
+    border-radius: .5em;
+
+    font-size: 1.25em;
+    font-weight: 500;
+    font-family: 'Bebas Neue', sans-serif;
+    cursor: pointer;
+    color: var(--primary);
+    background-color: var(--secondary);
+    transition: all 0.3s ease;
+}
+
+header .menu button.join:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
