@@ -53,6 +53,7 @@ header .menu p {
     font-size: 1.35em;
     font-weight: 500;
     font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.06em;
     color: var(--light-text);
     position: relative;
     transition: transform 0.2s ease, color 0.2s ease;
