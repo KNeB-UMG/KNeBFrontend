@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './styles/JoinUsForm.css'
 
 interface JoinUsFormProps {
@@ -13,6 +13,36 @@ const JoinUsForm: React.FC<JoinUsFormProps> = ({ isOpen, onClose }) => {
     phone: '',
     message: '',
   })
+
+  // Blokuj scrollowanie strony gdy formularz jest otwarty
+  useEffect(() => {
+    if (isOpen) {
+      // Zapisz aktualną pozycję scrolla
+      const scrollY = window.scrollY
+      document.body.style.position = 'fixed'
+      document.body.style.top = `-${scrollY}px`
+      document.body.style.width = '100%'
+      document.body.style.overflow = 'hidden'
+    } else {
+      // Przywróć scrollowanie
+      const scrollY = document.body.style.top
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+      if (scrollY) {
+        window.scrollTo(0, parseInt(scrollY || '0') * -1)
+      }
+    }
+
+    // Cleanup przy unmount
+    return () => {
+      document.body.style.position = ''
+      document.body.style.top = ''
+      document.body.style.width = ''
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -89,7 +119,7 @@ const JoinUsForm: React.FC<JoinUsFormProps> = ({ isOpen, onClose }) => {
               name="message"
               value={formData.message}
               onChange={handleChange}
-              rows={4}
+              rows={3}
               placeholder="Napisz kilka słów o sobie i swoich zainteresowaniach..."
             />
           </div>
