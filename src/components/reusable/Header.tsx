@@ -22,11 +22,46 @@ const Header: React.FC<HeaderProps> = ({ onJoinClick }) => {
       { label: 'Kontakt', href: '#contact'},
   ]
 
+  const smoothScrollTo = (element: HTMLElement, offset: number = 0) => {
+    const startPosition = window.pageYOffset
+    const targetPosition = element.offsetTop - offset
+    const distance = targetPosition - startPosition
+    const duration = 2000 // ms - wolniejsze scrollowanie
+    let start: number | null = null
+
+    // Easing function: ease-out-cubic (przyspiesza w środku, nie zwalnia na końcu)
+    const easeOutCubic = (t: number): number => {
+      return 1 - Math.pow(1 - t, 3)
+    }
+
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime
+      const timeElapsed = currentTime - start
+      const progress = Math.min(timeElapsed / duration, 1)
+      const ease = easeOutCubic(progress)
+
+      window.scrollTo(0, startPosition + distance * ease)
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation)
+      }
+    }
+
+    requestAnimationFrame(animation)
+  }
+
   const handleMenuClick = (href: string) => {
     if (href === '#contact') {
       const contactSection = document.getElementById('contact')
       if (contactSection) {
-        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        // Znajdź tytuł sekcji (h2 w contact-header)
+        const contactHeader = contactSection.querySelector('.contact-header h2')
+        if (contactHeader) {
+          const headerElement = contactHeader as HTMLElement
+          smoothScrollTo(headerElement, 150) // 150px margines górny
+        } else {
+          smoothScrollTo(contactSection, 150)
+        }
       }
     }
   }
