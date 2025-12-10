@@ -1,11 +1,17 @@
 import React from 'react'
 
 import Hero from '../components/home/Hero'
+import ContactUsForm from '../components/other/ContactUsForm'
 
-const Home: React.FC = () => {
+interface HomeProps {
+  onJoinClick: () => void
+}
+
+const Home: React.FC<HomeProps> = ({ onJoinClick }) => {
   return (
     <div className='home'>
-      <Hero />
+      <Hero onJoinClick={onJoinClick} />
+      <ContactUsForm />
     </div>
   )
 }

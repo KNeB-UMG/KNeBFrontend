@@ -10,13 +10,26 @@ interface MenuItem {
   href: string;
 }
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onJoinClick: () => void
+}
+
+const Header: React.FC<HeaderProps> = ({ onJoinClick }) => {
   const menuItems: MenuItem[] = [
       { label: 'Strona główna', href: '/' },
       { label: 'O nas', href: '/about'},
       { label: 'Posty', href: '/posts'},
-      { label: 'Kontakt', href: '/contact'},
+      { label: 'Kontakt', href: '#contact'},
   ]
+
+  const handleMenuClick = (href: string) => {
+    if (href === '#contact') {
+      const contactSection = document.getElementById('contact')
+      if (contactSection) {
+        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    }
+  }
 
   return (
     <header>
@@ -26,9 +39,9 @@ const Header: React.FC = () => {
       </div>
       <div className='menu'>
         {menuItems.map((item) => (
-          <p key={item.label}> {item.label} </p>
+          <p key={item.label} onClick={() => handleMenuClick(item.href)}> {item.label} </p>
         ))}
-        <button className='join'> Dołącz do nas </button>
+        <button className='join' onClick={onJoinClick}> Dołącz do nas </button>
       </div>
 
     </header>

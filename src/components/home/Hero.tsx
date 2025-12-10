@@ -4,10 +4,14 @@ import Header from '../reusable/Header'
 
 import './styles/Hero.css'
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  onJoinClick: () => void
+}
+
+const Hero: React.FC<HeroProps> = ({ onJoinClick }) => {
   return (
     <section className='hero'>
-        <Header />
+        <Header onJoinClick={onJoinClick} />
         AAA
     </section>
   )
