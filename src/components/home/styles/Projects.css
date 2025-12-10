@@ -43,8 +43,8 @@
 }
 
 .project-card {
-    background-color: rgba(26, 43, 66, 0.03);
-    border: 2px solid rgba(26, 43, 66, 0.1);
+    background-color: var(--primary-light-03);
+    border: 2px solid var(--primary-light-10);
     border-radius: 1.5em;
     padding: 2em;
     transition: all 0.3s ease;
@@ -56,8 +56,8 @@
 .project-card:hover {
     transform: translateY(-8px);
     border-color: var(--secondary);
-    box-shadow: 0 12px 30px rgba(26, 43, 66, 0.15);
-    background-color: rgba(26, 43, 66, 0.05);
+    box-shadow: 0 12px 30px var(--primary-light-15);
+    background-color: var(--primary-light-05);
 }
 
 .project-header {
@@ -82,7 +82,7 @@
     font-size: 1em;
     color: var(--secondary);
     font-weight: 600;
-    background-color: rgba(210, 178, 106, 0.1);
+    background-color: var(--secondary-light-10);
     padding: 0.4em 0.8em;
     border-radius: 0.5em;
     white-space: nowrap;
@@ -111,11 +111,11 @@
     font-family: 'Inter', sans-serif;
     font-size: 0.85em;
     color: var(--primary);
-    background-color: rgba(26, 43, 66, 0.08);
+    background-color: var(--primary-light-08);
     padding: 0.4em 0.9em;
     border-radius: 0.5em;
     font-weight: 500;
-    border: 1px solid rgba(26, 43, 66, 0.15);
+    border: 1px solid var(--primary-light-15);
     transition: all 0.2s ease;
 }
 

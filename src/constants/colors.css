@@ -2,4 +2,37 @@
     --primary: #1a2b42;
     --secondary: rgb(210, 178, 106);
     --light-text: #f6f6f6;
+
+    /* Overlay colors */
+    --overlay: rgba(0, 0, 0, 0.6);
+    --shadow-dark: rgba(0, 0, 0, 0.3);
+    --shadow-medium: rgba(0, 0, 0, 0.25);
+
+    /* Primary with opacity */
+    --primary-light-03: rgba(26, 43, 66, 0.03);
+    --primary-light-05: rgba(26, 43, 66, 0.05);
+    --primary-light-08: rgba(26, 43, 66, 0.08);
+    --primary-light-10: rgba(26, 43, 66, 0.1);
+    --primary-light-15: rgba(26, 43, 66, 0.15);
+
+    /* Secondary with opacity */
+    --secondary-light-10: rgba(210, 178, 106, 0.1);
+    --secondary-light-15: rgba(210, 178, 106, 0.15);
+    --secondary-light-20: rgba(210, 178, 106, 0.2);
+    --secondary-light-30: rgba(210, 178, 106, 0.3);
+    --secondary-light-40: rgba(210, 178, 106, 0.4);
+    --secondary-light-80: rgba(210, 178, 106, 0.8);
+    --secondary-light-90: rgba(210, 178, 106, 0.9);
+
+    /* Light text with opacity */
+    --light-text-light-03: rgba(246, 246, 246, 0.03);
+    --light-text-light-05: rgba(246, 246, 246, 0.05);
+    --light-text-light-06: rgba(246, 246, 246, 0.06);
+    --light-text-light-08: rgba(246, 246, 246, 0.08);
+    --light-text-light-10: rgba(246, 246, 246, 0.1);
+    --light-text-light-15: rgba(246, 246, 246, 0.15);
+    --light-text-light-20: rgba(246, 246, 246, 0.2);
+    --light-text-light-35: rgba(246, 246, 246, 0.35);
+    --light-text-light-40: rgba(246, 246, 246, 0.4);
+    --light-text-light-70: rgba(246, 246, 246, 0.7);
 }
