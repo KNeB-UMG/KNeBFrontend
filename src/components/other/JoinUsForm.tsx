@@ -14,17 +14,14 @@ const JoinUsForm: React.FC<JoinUsFormProps> = ({ isOpen, onClose }) => {
     message: '',
   })
 
-  // Blokuj scrollowanie strony gdy formularz jest otwarty
   useEffect(() => {
     if (isOpen) {
-      // Zapisz aktualną pozycję scrolla
       const scrollY = window.scrollY
       document.body.style.position = 'fixed'
       document.body.style.top = `-${scrollY}px`
       document.body.style.width = '100%'
       document.body.style.overflow = 'hidden'
     } else {
-      // Przywróć scrollowanie
       const scrollY = document.body.style.top
       document.body.style.position = ''
       document.body.style.top = ''
@@ -35,7 +32,6 @@ const JoinUsForm: React.FC<JoinUsFormProps> = ({ isOpen, onClose }) => {
       }
     }
 
-    // Cleanup przy unmount
     return () => {
       document.body.style.position = ''
       document.body.style.top = ''

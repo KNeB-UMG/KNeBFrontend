@@ -11,7 +11,6 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
-  // Symulowane dane projektów (w przyszłości będą przychodzić z serwera)
   const projects: Project[] = [
     {
       id: 1,

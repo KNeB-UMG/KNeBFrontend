@@ -26,10 +26,9 @@ const Header: React.FC<HeaderProps> = ({ onJoinClick }) => {
     const startPosition = window.pageYOffset
     const targetPosition = element.offsetTop - offset
     const distance = targetPosition - startPosition
-    const duration = 2000 // ms - wolniejsze scrollowanie
+    const duration = 2000
     let start: number | null = null
 
-    // Easing function: ease-out-cubic (przyspiesza w środku, nie zwalnia na końcu)
     const easeOutCubic = (t: number): number => {
       return 1 - Math.pow(1 - t, 3)
     }
@@ -54,11 +53,10 @@ const Header: React.FC<HeaderProps> = ({ onJoinClick }) => {
     if (href === '#contact') {
       const contactSection = document.getElementById('contact')
       if (contactSection) {
-        // Znajdź tytuł sekcji (h2 w contact-header)
         const contactHeader = contactSection.querySelector('.contact-header h2')
         if (contactHeader) {
           const headerElement = contactHeader as HTMLElement
-          smoothScrollTo(headerElement, 150) // 150px margines górny
+          smoothScrollTo(headerElement, 150)
         } else {
           smoothScrollTo(contactSection, 150)
         }

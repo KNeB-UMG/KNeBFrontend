@@ -35,17 +35,15 @@ const Hero: React.FC<HeroProps> = ({ onJoinClick }) => {
               onClick={() => {
                 const contactSection = document.getElementById('contact')
                 if (contactSection) {
-                  // Znajdź tytuł sekcji (h2 w contact-header)
                   const contactHeader = contactSection.querySelector('.contact-header h2')
                   const targetElement = (contactHeader as HTMLElement) || contactSection
-                  
+
                   const startPosition = window.pageYOffset
                   const targetPosition = targetElement.offsetTop - 150
                   const distance = targetPosition - startPosition
-                  const duration = 2000 // ms - wolniejsze scrollowanie
+                  const duration = 2000
                   let start: number | null = null
 
-                  // Easing function: ease-out-cubic (przyspiesza w środku, nie zwalnia na końcu)
                   const easeOutCubic = (t: number): number => {
                     return 1 - Math.pow(1 - t, 3)
                   }
